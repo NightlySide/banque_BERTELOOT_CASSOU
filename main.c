@@ -15,5 +15,6 @@ int main(int argc, char * argv[]) {
     printf(vendr.annee);
     printf(vendr.mois);
     printf(vendr.mois);
+    printf(vendr.mois);
     return 1;
 }
