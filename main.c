@@ -29,6 +29,15 @@ void fermer(FILE *f)
   fclose(f);
 }
 
+struct transaction creation_transaction(struct date d, float m, char* dest, char* lab){
+  struct transaction new_transac;
+  new_transac.date = d;
+  new_transac.montant = m;
+  new_transac.nom = dest;
+  new_transac.label = lab;
+  return &new_transac;
+}
+
 int main(int argc, char * argv[]) {
     struct date date1;
     now_date(&date1);
