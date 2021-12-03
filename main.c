@@ -14,5 +14,6 @@ int main(int argc, char * argv[]) {
     now_date(vendr);
     printf(vendr.annee);
     printf(vendr.mois);
+    printf(vendr.mois);
     return 1;
 }
