@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include "date.h"
+#include "entete.h"
 #include <string.h>
 
-void now_date( struct date *date_j){
+void now_date(struct date *date_j){
   time_t tt = time(NULL);
   struct tm *t = localtime(&tt);
 
@@ -36,6 +37,22 @@ struct transaction creation_transaction(struct date d, float m, char* dest, char
   new_transac.nom = dest;
   new_transac.label = lab;
   return &new_transac;
+}
+
+int ajout_transaction(FILE*, struct transaction *transaction) {
+	ouvrir(FILE*, *transaction.nom);
+	fwrite(*transaction,  FILE*);
+	fermer(FILE*);
+}
+
+struct entete creation_entete(struct date d, float solde){
+	struct entete newEntete;
+	newEntete.date = d;
+	newEntete.solde = solde;
+}
+
+FILE* creation_fichier(struct entete newEntete, char*){
+	
 }
 
 int main(int argc, char * argv[]) {
