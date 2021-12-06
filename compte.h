@@ -1,5 +1,5 @@
 typedef struct compte
 {
-  char nom[];
   int id;
+  *char nom;
 }compte;
