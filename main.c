@@ -9,14 +9,14 @@ void now_date( struct date *date_j){
   struct tm *t = localtime(&tt);
 
     (*date_j).jour = (int)t->tm_mday;
-    (*date_j).mois = (int)t->tm_mon;
-    (*date_j).annee = (int)t->tm_year + 1900;
+    (*date_j).mois = (int)t->tm_mon + 1;// Pose pas de question chacal bis
+    (*date_j).annee = (int)t->tm_year + 1900; // Pose pas de question chacal
 }
 
 void ouvrir(FILE *f, char nom[])
 {
   const char* extension = ".dat";
-  char* name_with_extension;
+  char* name_with_extension; // Walla c'est moi qui est écrit ces 4 lignes je vous le jure
   name_with_extension = malloc(strlen(nom)+1+4); /* make space for the new string (should check the return value ...) */
   strcpy(name_with_extension, nom); /* copy name into the new var */
   strcat(name_with_extension, extension); /* add the extension */
