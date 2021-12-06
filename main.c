@@ -6,13 +6,13 @@
 #include "transaction.h"
 #include "date.h"
 
-void now_date( date *date_j){
+void now_date( Date *date_j){
   time_t tt = time(NULL);
   struct tm *t = localtime(&tt);
 
-  (*date_j).jour = (int)t->tm_mday;
-  (*date_j).mois = (int)t->tm_mon + 1;// Pose pas de question chacal bis
-  (*date_j).annee = (int)t->tm_year + 1900; // Pose pas de question chacal
+  date_j->jour = (int)t->tm_mday;
+  date_j->mois = (int)t->tm_mon + 1;// Pose pas de question chacal bis
+  date_j->annee = (int)t->tm_year + 1900; // Pose pas de question chacal
 }
 
 void ouvrir(FILE *f, char nom[])
@@ -31,7 +31,7 @@ void fermer(FILE *f)
   fclose(f);
 }
 
-transaction creation_transaction(date d, float m, char dest, char lab){
+transaction creation_transaction(Date d, float m, char dest, char lab){
   transaction *new_transac;
   (*new_transac).date_transac = d;
   (*new_transac).montant = m;
@@ -59,7 +59,7 @@ int ajout_transaction(FILE *f ,transaction t){
   return 0;
 }
 int main(int argc, char * argv[]) {
-    date date1;
+    Date date1;
     now_date(&date1);
     printf("%i \n",date1.jour);
     printf("%i \n",date1.mois);

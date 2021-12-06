@@ -1,7 +1,13 @@
 #include "time.h"
-typedef struct date
+
+#ifndef DATE_H
+#define DATE_H
+
+typedef struct Date
 {
     int jour;
     int mois;
     int annee;
-}date;
+}Date;
+
+#endif
