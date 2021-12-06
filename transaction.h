@@ -1,10 +1,10 @@
 #include "date.h"
+#include <string.h>
 
-struct transaction
+typedef struct transaction
 {
-    struct date date_transac;
+    date date_transac;
     float montant;
-    char nom[];
+    char nom_dest[];
     char label[30];
-
-};
+}transaction;

@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "date.h"
 #include <string.h>
 
-void now_date( struct date *date_j){
+#include "transaction.h"
+#include "date.h"
+
+void now_date( date *date_j){
   time_t tt = time(NULL);
   struct tm *t = localtime(&tt);
 
-    (*date_j).jour = (int)t->tm_mday;
-    (*date_j).mois = (int)t->tm_mon + 1;// Pose pas de question chacal bis
-    (*date_j).annee = (int)t->tm_year + 1900; // Pose pas de question chacal
+  (*date_j).jour = (int)t->tm_mday;
+  (*date_j).mois = (int)t->tm_mon + 1;// Pose pas de question chacal bis
+  (*date_j).annee = (int)t->tm_year + 1900; // Pose pas de question chacal
 }
 
 void ouvrir(FILE *f, char nom[])
@@ -29,17 +31,35 @@ void fermer(FILE *f)
   fclose(f);
 }
 
-struct transaction creation_transaction(struct date d, float m, char* dest, char* lab){
-  struct transaction new_transac;
-  new_transac.date = d;
-  new_transac.montant = m;
-  new_transac.nom = dest;
-  new_transac.label = lab;
-  return &new_transac;
+transaction creation_transaction(date d, float m, char dest, char lab){
+  transaction *new_transac;
+  (*new_transac).date_transac = d;
+  (*new_transac).montant = m;
+  (*new_transac).nom_dest = dest;
+  (*new_transac).label = lab;
+  return *new_transac;
 }
+int ajout_transaction(FILE *f ,transaction t){
+  if(fprintf(f,"%i %i %i ",t.date_transac.annee,t.date_transac.mois,t.date_transac.jour)== -1){
+    printf("Erreur d'écriture de la transaction\n");
+  }
 
+  if(fprintf(f,"%f ",t.montant)== -1){
+    printf("Erreur d'écriture du montant\n");
+  }
+
+  if(fprintf(f,"%s ",t.nom_dest)== -1){
+    printf("Erreur d'écriture du destinataire\n");
+  }
+
+  if(fprintf(f,"%s \n",t.label)== -1){
+    printf("Erreur d'écriture du label\n");
+  }
+
+  return 0;
+}
 int main(int argc, char * argv[]) {
-    struct date date1;
+    date date1;
     now_date(&date1);
     printf("%i \n",date1.jour);
     printf("%i \n",date1.mois);
@@ -47,5 +67,5 @@ int main(int argc, char * argv[]) {
     FILE f;
     ouvrir(&f,"oui");
     fermer(&f);
-    return 1;
+    return 0;
 }
