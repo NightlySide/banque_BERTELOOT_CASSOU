@@ -47,5 +47,5 @@ int main(int argc, char * argv[]) {
     FILE f;
     ouvrir(&f,"oui");
     fermer(&f);
-    return 0;
+    return 1;
 }
