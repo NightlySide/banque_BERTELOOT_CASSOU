@@ -14,7 +14,19 @@ void ajout() {
 }
 
 void liste_comptes() {
-	// afficher la liste des comptes
+	FILE f_banque;
+	ouvrir(&f_banque, "banque");
+
+	COMPTE c;
+	int res;
+	do {
+		res = fread(&c, sizeof(COMPTE), 1, &f_banque);
+		if (res != 0) {
+			printf("Compte: %s, ID: %d\n", c.nom, c.id);
+		}
+	} while (res != 0);
+
+	fermer(&f_banque);
 }
 
 void releve_compte() {
@@ -80,11 +92,11 @@ void menu() {
 		scanf("%c", &choix);
 
 		switch (choix) {
-		case 'a':case 'A': ajout(fic); break;
-		case 'l':case 'L': liste_comptes(fic); break;
-		case 'r':case 'R': releve_compte(fic); break;
-		case 'v':case 'V': virement_compte_client(fic); break;
-		case 'm':case 'M': maj_solde_client(fic); break;
+		case 'a':case 'A': ajout(); break;
+		case 'l':case 'L': liste_comptes(); break;
+		case 'r':case 'R': releve_compte(); break;
+		case 'v':case 'V': virement_compte_client(); break;
+		case 'm':case 'M': maj_solde_client(); break;
 		default:
 			printf("Au revoir ...\n");
 			exit(0);

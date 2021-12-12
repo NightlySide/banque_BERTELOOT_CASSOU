@@ -60,7 +60,9 @@ char* nom_de_compte(int id) {
 
     fermer(&f_banque);
 
-    return c.nom;
+    char* res = malloc(sizeof(char) * 30);
+    strcpy(res, c.nom);
+    return res;
 }
 
 // Retourne la solde du client à partir de la date donnée
@@ -93,6 +95,9 @@ int mise_a_jour_solde_client(char* nom, DATE date) {
 
     // on ferme le fichier client
     fermer(&f_client);
+
+    // tout s'est bien passé
+    return 0;
 }
 
 int virement_de_a(char* nom_src, char* nom_dst, DATE date, float montant) {
@@ -146,8 +151,6 @@ int imprimer_releve(char* nom, DATE date) {
     ouvrir(&f_client, nom);
 
     // on récupère tous les soldes du mois donné
-    int somme = 0;
-
     ENTETE e_actuel;
     ENTETE e_precedent;
     DATE* currentDate;
