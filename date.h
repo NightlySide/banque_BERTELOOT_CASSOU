@@ -1,13 +1,9 @@
 #include "time.h"
 
-#ifndef DATE_H
-#define DATE_H
-
-typedef struct Date
-{
+typedef struct {
     int jour;
     int mois;
     int annee;
-}Date;
+} DATE;
 
-#endif
+//void now_date(DATE *date_j);
