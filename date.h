@@ -1,7 +1,8 @@
 #include "time.h"
 
-#ifndef DATE_H
-#define DATE_H
+
+#ifndef TIME_H
+#define TIME_H
 
 typedef struct {
     int jour;
@@ -11,3 +12,5 @@ typedef struct {
 
 #endif
 //void now_date(DATE *date_j);
+
+#endif
