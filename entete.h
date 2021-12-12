@@ -1,6 +1,5 @@
-struct entete
-{
-    struct date dateActuelle;
+//#include "date.h"
+typedef struct {
+    DATE dateActuelle;
     float solde;
-
-};
+} ENTETE;
