@@ -1,5 +1,6 @@
 #include "time.h"
 
+
 #ifndef TIME_H
 #define TIME_H
 
@@ -9,6 +10,7 @@ typedef struct {
     int annee;
 } DATE;
 
+#endif
 //void now_date(DATE *date_j);
 
 #endif
