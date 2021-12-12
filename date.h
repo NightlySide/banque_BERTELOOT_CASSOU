@@ -10,5 +10,7 @@ typedef struct {
     int annee;
 } DATE;
 
+void now_date(DATE *date_j);
+int eq_date(DATE *d1, DATE *d2);
+
 #endif
-//void now_date(DATE *date_j);
