@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "fileMgmt.h"
+#include <string.h>
+#include <stdlib.h>
 
 // Ouvre un fichier d'après son nom
 // Si le fichier n'existe pas, il sera crée

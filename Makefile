@@ -1,8 +1,9 @@
 
+SRC=$(wildcard *.c)
 default: clean main
 
 clean:
 	rm -f main *.o
 
-main:
-	gcc -g -Wall main.c -o main
+main:$(SRC)
+	gcc -o main $^ -Wall 

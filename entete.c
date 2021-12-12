@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "entete.h"
 #include "fileMgmt.h"
 
@@ -19,18 +19,19 @@ ENTETE creation_entete(DATE date, float solde) {
 // Crée un fichier à l'aide d'un entete donné
 FILE* creation_fichier(ENTETE e, char* nomFichier) {
     // on ouvre le fichier à l'aide de la fonction déjà crée
-    FILE f;
-    ouvrir(&f, nomFichier);
+    FILE *f = malloc(sizeof(FILE));
+    ouvrir(f, nomFichier);
 
     // on enregistre le nouvel entete dans le fichier
-    fwrite(&e, sizeof(ENTETE), 1, &f);
+    fwrite(&e, sizeof(ENTETE), 1, f);
 
     // on retourne le pointeur vers ce fichier
-    return &f;
+    return f;
 }
 
 // Mets à jour l'entête du jour en fonction de l'entête précédent
 // Ainsi que les transactions liées à l'entête
 void mise_a_jour_solde(FILE* f, DATE date) {
+
 
 }

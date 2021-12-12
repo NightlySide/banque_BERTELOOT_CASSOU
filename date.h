@@ -12,5 +12,3 @@ typedef struct {
 
 #endif
 //void now_date(DATE *date_j);
-
-#endif
