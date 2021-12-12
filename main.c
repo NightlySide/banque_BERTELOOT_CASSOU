@@ -6,18 +6,18 @@
 #include "fileMgmt.h"
 #include "compte.h"
 
-void ajout(FILE* fic) {
+void ajout() {
 	char* nomClient = (char*)malloc(sizeof(char) * 30);
 	printf("\nVeuiller indiquer le nom du client: ");
 	scanf("%s", nomClient);
 	creer_utilisateur(nomClient);
 }
 
-void liste_comptes(FILE* fic) {
+void liste_comptes() {
 	// afficher la liste des comptes
 }
 
-void releve_compte(FILE* fic) {
+void releve_compte() {
 	char* nomClient = (char*)malloc(sizeof(char) * 30);
 	printf("\nVeuiller indiquer le nom du compte a relever : ");
 	scanf("%s", nomClient);
@@ -33,7 +33,7 @@ void releve_compte(FILE* fic) {
 	imprimer_releve(nomClient, d);
 }
 
-void virement_compte_client(FILE* fic) {
+void virement_compte_client() {
 	char* compteSource = (char*)malloc(sizeof(char) * 30);
 	printf("\nVeuiller indiquer le nom du compte source : ");
 	scanf("%s", compteSource);
@@ -51,7 +51,7 @@ void virement_compte_client(FILE* fic) {
 	virement_de_a(compteSource, compteDestination, d, montant);
 }
 
-void maj_solde_client(FILE* fic) {
+void maj_solde_client() {
 	char* nomClient = (char*)malloc(sizeof(char) * 30);
 	printf("\nVeuiller indiquer le nom du compte à mettre à jour : ");
 	scanf("%c", nomClient);
@@ -66,7 +66,7 @@ void maj_solde_client(FILE* fic) {
 	fermer(&fichier_client);
 }
 
-void menu(FILE* fic) {
+void menu() {
 	char choix;
 	do {
 		printf("\n\nAjouter un nouveau client..............: A\n");
@@ -94,11 +94,5 @@ void menu(FILE* fic) {
 
 int main() {
 	printf("Démarrage du programme...\n");
-
-	FILE fichier_banque;
-	ouvrir(&fichier_banque, "banque");
-
-	menu(&fichier_banque);
-
-	fermer(&fichier_banque);
+	menu();
 }
