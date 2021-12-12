@@ -14,6 +14,7 @@ typedef struct {
 ENTETE creation_entete(DATE date, float solde);
 FILE *creation_fichier(ENTETE e, char* nomFichier);
 void mise_a_jour_solde(FILE *f, DATE date);
+int get_entetes_from_date(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_precedent);
 
 
 #endif

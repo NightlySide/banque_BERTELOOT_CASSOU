@@ -7,7 +7,6 @@
 
 // fonction privées -> on définit juste les prototypes de fonction
 int get_transaction_somme(FILE* f, DATE date);
-int get_entetes_from_date(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_precedent);
 
 // Crée une nouvelle instance d'entête
 ENTETE creation_entete(DATE date, float solde) {
