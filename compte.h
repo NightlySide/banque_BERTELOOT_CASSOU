@@ -6,7 +6,7 @@
 
 typedef struct {
   int id;
-  char nom[];
+  char nom[30];
 } COMPTE;
 
 int creer_utilisateur(char* nom);

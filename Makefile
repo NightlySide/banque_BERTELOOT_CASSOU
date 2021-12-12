@@ -10,3 +10,6 @@ clean:
 
 main:$(SRC)
 	gcc -o main $^ -Wall 
+
+cleandata:
+	rm -f *.dat

@@ -1,3 +1,8 @@
 {
-	"cSpell.words": ["ENTETE"]
+	"cSpell.words": ["ENTETE"],
+	"files.associations": {
+		"**/.i3/config": "i3",
+		"**/i3/config": "i3",
+		"date.h": "c"
+	}
 }

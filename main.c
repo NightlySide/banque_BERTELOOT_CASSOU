@@ -14,19 +14,20 @@ void ajout() {
 }
 
 void liste_comptes() {
-	FILE f_banque;
-	ouvrir(&f_banque, "banque");
+	FILE* f_banque = ouvrir("banque");
+
+	printf("\nAffichange de la liste des compte :\n");
+	printf("-----------------------------------\n");
 
 	COMPTE c;
 	int res;
 	do {
-		res = fread(&c, sizeof(COMPTE), 1, &f_banque);
-		if (res != 0) {
+		res = fread(&c, sizeof(COMPTE), 1, f_banque);
+		if (res != 0)
 			printf("Compte: %s, ID: %d\n", c.nom, c.id);
-		}
 	} while (res != 0);
 
-	fermer(&f_banque);
+	fermer(f_banque);
 }
 
 void releve_compte() {
@@ -68,14 +69,13 @@ void maj_solde_client() {
 	printf("\nVeuiller indiquer le nom du compte à mettre à jour : ");
 	scanf("%c", nomClient);
 
-	FILE fichier_client;
-	ouvrir(&fichier_client, nomClient);
+	FILE* fichier_client = ouvrir(nomClient);
 	DATE d;
 	now_date(&d);
 
-	mise_a_jour_solde(&fichier_client, d);
+	mise_a_jour_solde(fichier_client, d);
 
-	fermer(&fichier_client);
+	fermer(fichier_client);
 }
 
 void menu() {
@@ -97,11 +97,9 @@ void menu() {
 		case 'r':case 'R': releve_compte(); break;
 		case 'v':case 'V': virement_compte_client(); break;
 		case 'm':case 'M': maj_solde_client(); break;
-		default:
-			printf("Au revoir ...\n");
-			exit(0);
 		}
 	} while (choix != 'q' && choix != 'Q');
+
 }
 
 int main() {

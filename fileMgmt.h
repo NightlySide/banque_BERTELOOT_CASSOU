@@ -3,7 +3,7 @@
 #ifndef FILEMGMT_H
 #define FILEMGMT_H
 
-void ouvrir(FILE *f, char nom[]);
+FILE* ouvrir(char nom[]);
 void fermer(FILE *f);
 
 #endif

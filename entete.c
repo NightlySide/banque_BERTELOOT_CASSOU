@@ -24,11 +24,13 @@ ENTETE creation_entete(DATE date, float solde) {
 // Crée un fichier à l'aide d'un entete donné
 FILE* creation_fichier(ENTETE e, char* nomFichier) {
     // on ouvre le fichier à l'aide de la fonction déjà crée
-    FILE* f = malloc(sizeof(FILE));
-    ouvrir(f, nomFichier);
+    FILE* f = ouvrir(nomFichier);
 
     // on enregistre le nouvel entete dans le fichier
     fwrite(&e, sizeof(ENTETE), 1, f);
+
+    // on ferme le fichier
+    fermer(f);
 
     // on retourne le pointeur vers ce fichier
     return f;
