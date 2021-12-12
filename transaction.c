@@ -3,6 +3,7 @@
 
 #include "transaction.h"
 
+// Crée une nouvelle instance de transaction
 TRANSACTION creation_transaction(DATE date, float montant, char* label, char* nom) {
     // on crée une nouvelle instance de transaction
     TRANSACTION t;
@@ -18,7 +19,7 @@ TRANSACTION creation_transaction(DATE date, float montant, char* label, char* no
     return t;
 }
 
+// Ajoute une transaction au fichier et retourne le résultat d'écriture
 int ajout_transaction(FILE* f, TRANSACTION* t) {
-    // on ajoute la structure au fichier et on retourne le nombre de bytes écrits
     return (int)fwrite(t, sizeof(TRANSACTION), 1, f);
 }
