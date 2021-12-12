@@ -5,6 +5,10 @@
 #include "date.h"
 #include "transaction.h"
 
+// fonction privées -> on définit juste les prototypes de fonction
+int get_transaction_somme(FILE* f, DATE date);
+int get_entetes_from_date(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_precedent);
+
 // Crée une nouvelle instance d'entête
 ENTETE creation_entete(DATE date, float solde) {
     // on crée l'instance
@@ -49,7 +53,7 @@ void mise_a_jour_solde(FILE* f, DATE date) {
     }
 
     // on parcoure les transactions précédentes
-    int somme_transactions = get_transaction_somme(*f, date);
+    int somme_transactions = get_transaction_somme(f, date);
     // après la fonction, ici, le curseur est juste avant l'entete de la date demandée
 
     // on met à jour le solde
@@ -63,7 +67,7 @@ void mise_a_jour_solde(FILE* f, DATE date) {
 // Déplace le curseur à l'entête spécifié par la date
 // retourne 1 si la date n'a pas été trouvée
 // retourne 2 si la date est le 1er entete
-int move_curseur_to_entete(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_precedent) {
+int get_entetes_from_date(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_precedent) {
     // on déplace le curseur au début du fichier
     fseek(f, 0, SEEK_SET);
 
@@ -89,7 +93,7 @@ int move_curseur_to_entete(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_prece
         }
 
         // si la date lue est différente de la précédente
-        if (eq_date(&t.date, &currentDate) == 1) {
+        if (eq_date(&t.date, currentDate) == 1) {
             // on change l'en-tete
             e_precedent = e_actuel;
 
@@ -100,7 +104,7 @@ int move_curseur_to_entete(FILE* f, DATE date, ENTETE* e_actuel, ENTETE* e_prece
             // on met à jour la date actuelle
             currentDate = &(*e_actuel).dateActuelle;
         }
-    } while (eq_date(&e.dateActuelle, &date) != 0); // tant qu'on a pas trouvé notre date
+    } while (eq_date(&(*e_actuel).dateActuelle, &date) != 0); // tant qu'on a pas trouvé notre date
 
     // fseek(f, -sizeof(ENTETE), SEEK_CUR);
     return 0;
@@ -118,14 +122,14 @@ int get_transaction_somme(FILE* f, DATE date) {
         nb_transactions++;
 
         // si les dates sont différentes
-        if (eq_date(t.date, date) == 0) {
+        if (eq_date(&t.date, &date) == 0) {
             // on ajoute le montant de la transaction
             somme += t.montant;
         }
-    } while (eq_date(t.date, date) == 0); // tant qu'on est sur le meme jour
+    } while (eq_date(&t.date, &date) == 0); // tant qu'on est sur le meme jour
 
     // on remonte le curseur
-    for (int k = 0; k < nb_transactions; i++)
+    for (int k = 0; k < nb_transactions; k++)
         fseek(f, -sizeof(TRANSACTION), SEEK_CUR);
     fseek(f, -sizeof(ENTETE), SEEK_CUR);
 
