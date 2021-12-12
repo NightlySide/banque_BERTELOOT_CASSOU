@@ -1,3 +1,5 @@
+
+
 void ouvrir(FILE *f, char nom[]){
   const char* extension = ".dat";
   char* name_with_extension;
